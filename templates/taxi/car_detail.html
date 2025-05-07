@@ -4,7 +4,7 @@
   <h1>Model: {{ car.model }}</h1>
   <p>Manufacturer: ({{ car.manufacturer.name }}, {{ car.manufacturer.country }})</p>
   <h2>Drivers</h2>
-    <form method="post" action="{% url 'taxi:car-assign' object.id %}">
+    <form method="post" action="{% url 'taxi:car-assign' car.id %}">
         {% csrf_token %}
         {% if user in car.drivers.all %}
             <button type="submit" class="btn btn-danger link-to-page">Delete me from this car</button>
@@ -16,7 +16,7 @@
   <ul>
     {% for driver in car.drivers.all %}
       <p><strong>Username:</strong>{{ driver.username }}</p>
-      <p><strong>Full name:</strong>{{ driver.first_name }} {{ driver.first_name }}</p>
+      <p><strong>Full name:</strong>{{ driver.first_name }} {{ driver.last_name }}</p>
       <p><strong>License number:</strong>{{ driver.license_number }}</p>
       <hr>
     {% endfor %}

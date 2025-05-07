@@ -78,7 +78,11 @@ class CarUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 
 @login_required
-def add_or_remove_driver_on_car(request: HttpRequest, car_id: int) -> HttpResponse:
+def add_or_remove_driver_on_car(
+        request: HttpRequest,
+        car_id: int
+) -> HttpResponse:
+
     car = get_object_or_404(Car, pk=car_id)
     driver = request.user
 
@@ -109,12 +113,12 @@ class DriverLicenseUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Driver
     form_class = DriverLicenseUpdateForm
     template_name = "taxi/driver_license_update.html"
-    success_url = reverse_lazy('taxi:driver-list')
+    success_url = reverse_lazy("taxi:driver-list")
 
 
 class DriverDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Driver
-    success_url = reverse_lazy('taxi:driver-list')
+    success_url = reverse_lazy("taxi:driver-list")
 
 
 class DriverDetailView(LoginRequiredMixin, generic.DetailView):
